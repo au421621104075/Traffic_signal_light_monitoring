@@ -1,0 +1,21 @@
+body {
+    background: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.status-box {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.table {
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+}
