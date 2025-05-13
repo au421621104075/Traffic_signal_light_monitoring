@@ -66,14 +66,14 @@ def dashboard():
     if signal == "Malfunction":
         filename = f"malfunction_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg"
         cv2.imwrite(f"static/{filename}", frame)
-    try:
-        twilio_client.messages.create(
-            body="🚨 Traffic Signal Malfunction Detected!",
-            from_=twilio_whatsapp_from,
-            to=twilio_whatsapp_to
-        )
-    except TwilioRestException as e:
-        print(f"Twilio error: {e}")
+        try:
+           twilio_client.messages.create(
+              body="🚨 Traffic Signal Malfunction Detected!",
+              from_=twilio_whatsapp_from,
+              to=twilio_whatsapp_to
+            )
+        except TwilioRestException as e:
+           print(f"Twilio error: {e}")
 
 
     history = get_history()
