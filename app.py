@@ -14,8 +14,8 @@ app = Flask(__name__)
 account_sid = os.getenv("TWILIO_SID")
 auth_token = os.getenv("TWILIO_AUTH")
 twilio_client = Client(account_sid, auth_token)
-twilio_from = os.getenv("TWILIO_FROM")
-twilio_to = os.getenv("TWILIO_TO")
+twilio_whatsapp_from = os.getenv("TWILIO_WHATSAPP_FROM")
+twilio_whatsapp_to = os.getenv("TWILIO_WHATSAPP_TO")
 
 camera_url = 0  # Default webcam. Replace with IP camera URL if needed.
 
@@ -69,8 +69,8 @@ def dashboard():
     try:
         twilio_client.messages.create(
             body="🚨 Traffic Signal Malfunction Detected!",
-            from_=twilio_from,
-            to=twilio_to
+            from_=twilio_whatsapp_from,
+            to=twilio_whatsapp_to
         )
     except TwilioRestException as e:
         print(f"Twilio error: {e}")
