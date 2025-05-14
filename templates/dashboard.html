@@ -9,6 +9,11 @@
 
 <body class="bg-light text-center">
     <div class="container mt-5">
+        <!-- Add logout button here -->
+        <div class="text-end">
+            <a href="{{ url_for('logout') }}" class="btn btn-danger mb-4">Logout</a>
+        </div>
+
         <h1 class="mb-4">&#128678; Traffic Signal Monitoring System</h1>
         <div class="alert alert-info status-box">
             {{ status }}
