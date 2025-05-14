@@ -30,7 +30,7 @@ class User(UserMixin):
 
 # In-memory users for demonstration, replace with actual DB
 users = {
-    "admin": {"password": "admin123"}
+    "Traffic": {"password": "Traffic123"}
 }
 
 @login_manager.user_loader
