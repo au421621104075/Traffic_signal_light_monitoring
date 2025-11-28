@@ -21,8 +21,7 @@ twilio_client = Client(account_sid, auth_token)
 twilio_whatsapp_from = os.environ.get("TWILIO_WHATSAPP_FROM")
 twilio_whatsapp_to = os.environ.get("TWILIO_WHATSAPP_TO")
 
-# --- Camera ---
-#camera_url = 0  # Default webcam. Change to IP camera URL if needed.
+
 
 # --- User Model ---
 class User(UserMixin):
@@ -112,10 +111,8 @@ def dashboard():
     # Read the image
     image_path = get_next_image()
     frame = cv2.imread(image_path)
-    """cap = cv2.VideoCapture(camera_url)
-    ret, frame = cap.read()
-    cap.release() """
-    
+
+
     if frame is None:
         status = "Camera Error"
         signal = None
