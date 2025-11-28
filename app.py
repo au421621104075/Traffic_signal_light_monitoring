@@ -22,7 +22,7 @@ twilio_whatsapp_from = os.environ.get("TWILIO_WHATSAPP_FROM")
 twilio_whatsapp_to = os.environ.get("TWILIO_WHATSAPP_TO")
 
 # --- Camera ---
-camera_url = 0  # Default webcam. Change to IP camera URL if needed.
+#camera_url = 0  # Default webcam. Change to IP camera URL if needed.
 
 # --- User Model ---
 class User(UserMixin):
@@ -66,6 +66,26 @@ def get_history(limit=100):
     history = c.fetchall()
     conn.close()
     return history
+ # List of images
+image_files = [
+    "static\darkgreen.webp",
+    "static\darkred.png",
+    "static\darkyellow.jpg",
+    "static\malfunction_20250505_193020.jpg",
+    "static\lightgreen.png",
+    "static\lightred.jpg",
+    "static\lightyellow.jpg",
+    "static\malfunction_20250505_193016.jpg",
+    ]
+    # Index to track current image
+image_index = 0
+
+def get_next_image():
+    global image_index
+    img_path = image_files[image_index]
+    image_index = (image_index + 1) % len(image_files)
+    return img_path
+
 
 # --- Routes ---
 @app.route('/login', methods=['GET', 'POST'])
@@ -89,11 +109,14 @@ def logout():
 @app.route('/')
 @login_required
 def dashboard():
-    cap = cv2.VideoCapture(camera_url)
+    # Read the image
+    image_path = get_next_image()
+    frame = cv2.imread(image_path)
+    """cap = cv2.VideoCapture(camera_url)
     ret, frame = cap.read()
-    cap.release()
-
-    if not ret:
+    cap.release() """
+    
+    if frame is None:
         status = "Camera Error"
         signal = None
     else:
